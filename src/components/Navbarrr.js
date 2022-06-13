@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import Cart from './Cart';
 
 const Navbarrr = () => {
+    const [show, setShow] = useState(false);
+
+
+    const navigate = useNavigate()
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    const token =   localStorage.getItem("token")
+    
+    if(token){
+        setShow(true)}
+    else{ navigate('/login')}
+
+    }
+    
+    
+    
     return (
         <div>
 
@@ -13,11 +31,13 @@ const Navbarrr = () => {
                         <Nav className="me-auto">
                             <Nav.Link href="/#/login">Login</Nav.Link>
                             <Nav.Link href="/#/purchase">Purchases</Nav.Link>
-                            <Nav.Link role="button">carrito</Nav.Link>
+                            <Nav.Link role="button" onClick={handleShow}>carrito</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+
+           <Cart show={show} handleClose={handleClose}/>
         </div>
     );
 };

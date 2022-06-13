@@ -26,7 +26,7 @@ const ProductDetail = () => {
 
         //  <img src={product?.productImgs[0]} alt="" />
 
-    }, [navigate])
+    }, [navigate, dispatch, id])
     console.log(product);
 
     return (
